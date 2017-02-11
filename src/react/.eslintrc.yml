@@ -1,0 +1,15 @@
+extends:
+ - ../../.eslintrc.yml
+ - plugin:react/recommended
+env:
+ amd: true
+ browser: true
+ commonjs: true
+parserOptions:
+ ecmaFeatures:
+  experimentalObjectRestSpread: true
+  jsx: true
+ ecmaVersion: 6
+ sourceType: module
+plugins:
+ - react
