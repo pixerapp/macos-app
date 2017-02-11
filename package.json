@@ -1,0 +1,65 @@
+{
+  "name": "macos-app",
+  "version": "1.0.0",
+  "description": "MacOS app",
+  "main": "dist/main.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pixerapp/macos-app.git"
+  },
+  "author": "Esen Sagynov <kadishmal@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/pixerapp/macos-app/issues"
+  },
+  "homepage": "https://github.com/pixerapp/macos-app#readme",
+  "dependencies": {
+    "config": "1.25.1",
+    "electron": "1.4.15",
+    "i18next": "7.0.0",
+    "purecss": "0.6.2",
+    "react": "15.4.2",
+    "react-dom": "15.4.2",
+    "react-i18next": "2.1.0"
+  },
+  "devDependencies": {
+    "babel-core": "6.22.1",
+    "babel-loader": "6.2.10",
+    "babel-plugin-syntax-decorators": "6.13.0",
+    "babel-plugin-transform-decorators": "6.22.0",
+    "babel-plugin-transform-runtime": "6.22.0",
+    "babel-preset-es2015": "6.22.0",
+    "babel-preset-react": "6.22.0",
+    "babel-preset-react-hmre": "1.1.1",
+    "babel-preset-stage-2": "6.22.0",
+    "babel-runtime": "6.22.0",
+    "css-loader": "0.26.1",
+    "del": "2.2.2",
+    "eslint": "3.15.0",
+    "eslint-plugin-react": "6.9.0",
+    "expose-loader": "0.7.1",
+    "file-loader": "0.10.0",
+    "gulp": "3.9.1",
+    "gulp-task-loader": "1.4.4",
+    "gulp-util": "3.0.8",
+    "gulp-watch": "4.3.11",
+    "gulp-webpack": "1.5.0",
+    "pre-commit": "1.2.2",
+    "style-loader": "0.13.1",
+    "webpack": "2.2.1",
+    "webpack-dev-server": "2.3.0",
+    "webpack-stream": "3.2.0"
+  },
+  "pre-commit": [
+    "validate-package-json",
+    "lint"
+  ],
+  "scripts": {
+    "build": "NODE_ENV=development gulp",
+    "lint": "./node_modules/eslint/bin/eslint.js monitor",
+    "start": "NODE_ENV=production ./node_modules/.bin/electron .",
+    "start-dev": "NODE_ENV=development ./node_modules/.bin/electron .",
+    "test": "npm run validate-package-json && npm run lint",
+    "validate-package-json": "./validate-package-json.js"
+  }
+}
