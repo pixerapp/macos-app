@@ -1,5 +1,7 @@
 'use strict';
 
+const autoprefixer = require('autoprefixer');
+const poststylus = require('poststylus');
 const webpack = require('webpack');
 
 module.exports = function () {
@@ -10,7 +12,6 @@ module.exports = function () {
       rules: [
         {
           test: /\.js$/,
-          exclude: /node_modules/,
           use: [
             {
               loader: 'babel-loader',
@@ -35,6 +36,25 @@ module.exports = function () {
           ]
         },
         {
+          use: [
+            'style-loader',
+            'css-loader',
+            {
+              loader: 'stylus-loader',
+              options: {
+                use: [
+                  poststylus([
+                    autoprefixer({
+                      browsers: ['last 2 versions']
+                    })
+                  ])
+                ]
+              }
+            }
+          ],
+          test: /\.styl$/
+        },
+        {
           test: /\.(png|jpg|ttf|eot|svg|woff(2)?)(\?[a-z0-9=\.]+)?$/,
           use: [
             { loader: 'file-loader' }
@@ -45,7 +65,7 @@ module.exports = function () {
     plugins: [
       new webpack.DefinePlugin({
         'process.env': {
-          NODE_ENV: JSON.stringify('production')
+          NODE_ENV: JSON.stringify(IS_PRODUCTION ? 'production' : 'development')
         }
       }),
     ],

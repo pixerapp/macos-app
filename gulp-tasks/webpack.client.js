@@ -38,7 +38,7 @@ module.exports = function () {
       publicPath,
     },
     context: SRC_DIR,
-    target: 'web',
+    target: 'electron-renderer',
   }, baseConfig);
 
   if (!IS_PRODUCTION) {
