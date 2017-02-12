@@ -6,12 +6,10 @@ const watch = require('gulp-watch');
 
 let gulpProcesses = {};
 const GULP_OTHER_CHILD_PROCESS = 'other';
-const WEBPACK_SERVER_PROCESS = 'webpack.server';
 const WEBPACK_DEV_SERVER_PROCESS = 'webpack.client';
 
 function getChildProcessName(task) {
   switch (task) {
-    case WEBPACK_SERVER_PROCESS: return WEBPACK_SERVER_PROCESS;
     case WEBPACK_DEV_SERVER_PROCESS: return WEBPACK_DEV_SERVER_PROCESS;
     default: return GULP_OTHER_CHILD_PROCESS;
   }
@@ -52,7 +50,7 @@ function spawnChildren(tasks) {
 }
 
 function getAllTasks() {
-  return ['webpack.server', 'webpack.client'];
+  return ['webpack.client'];
 }
 
 module.exports = function WatchGulpTask() {
@@ -69,12 +67,6 @@ module.exports = function WatchGulpTask() {
     name: 'gulpfile'
   }, () => {
     spawnChildren.call(this, getAllTasks());
-  });
-
-  watch([
-    path.join(GULP_TASKS_PATH, `${WEBPACK_SERVER_PROCESS}.js`)
-  ], () => {
-    spawnChildren.call(this, [WEBPACK_SERVER_PROCESS]);
   });
 
   watch([

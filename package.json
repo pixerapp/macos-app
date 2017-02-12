@@ -1,8 +1,8 @@
 {
-  "name": "macos-app",
+  "name": "Pixerapp",
   "version": "1.0.0",
   "description": "MacOS app",
-  "main": "dist/main.js",
+  "main": "src/main.js",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/pixerapp/macos-app.git"
@@ -35,6 +35,7 @@
     "babel-runtime": "6.22.0",
     "css-loader": "0.26.1",
     "del": "2.2.2",
+    "electron-rebuild": "1.5.7",
     "eslint": "3.15.0",
     "eslint-plugin-react": "6.9.0",
     "expose-loader": "0.7.1",
@@ -55,8 +56,11 @@
     "lint"
   ],
   "scripts": {
-    "build": "NODE_ENV=development gulp",
+    "build": "gulp clean && NODE_ENV=development gulp",
+    "clean": "gulp clean",
     "lint": "./node_modules/eslint/bin/eslint.js monitor",
+    "rebuild": "./node_modules/.bin/electron-rebuild --version=1.4.15",
+    "reinstall": "rm -rf node_modules/ && npm install --no-optional",
     "start": "NODE_ENV=production ./node_modules/.bin/electron .",
     "start-dev": "NODE_ENV=development ./node_modules/.bin/electron .",
     "test": "npm run validate-package-json && npm run lint",
