@@ -1,0 +1,9 @@
+fb:
+  appId: appId
+  auth:
+    scopes: 'public_profile'
+    redirectUri: 'https://www.facebook.com/connect/login_success.html'
+logger:
+  level: debug
+  file:
+    path: './macos-app.log'
