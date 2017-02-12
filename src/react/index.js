@@ -1,26 +1,32 @@
 'use strict';
 
+/* External dependencies */
+const { ipcRenderer } = require('electron');
 import React from 'react';
 import { render } from 'react-dom';
-// import { AppContainer } from 'react-hot-loader';
+import { I18nextProvider } from 'react-i18next';
+import { hashHistory, Router } from 'react-router';
 
-import App from './App';
+/* Local dependencies */
+import i18n from './i18n';
+import routes from './routes';
+import { initState } from './Bus';
 
 const appPlaceholder = document.getElementById('app');
 
-function attach(Component) {
+ipcRenderer.on('initialState', (event, data) => {
+  initState(data);
+});
+
+function attach() {
   render(
-    // <AppContainer>
-      <Component/>
-    // </AppContainer>
-    ,appPlaceholder
+    <I18nextProvider i18n={ i18n }>
+      <Router history={hashHistory}
+              routes={routes}
+      />
+    </I18nextProvider>
+    , appPlaceholder
   );
 }
 
-attach(App);
-
-// if (module.hot) {
-//   module.hot.accept('./App', () => {
-//     attach(App);
-//   });
-// }
+attach();
